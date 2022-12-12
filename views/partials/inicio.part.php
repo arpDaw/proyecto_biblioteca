@@ -48,7 +48,7 @@
 
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="dropdown ymm-sw " data-wow-delay="0.1s">
-                            <a href="/views/index.view.php" class=<?php changeClassHome(); ?>>Home</a>
+                            <a href="./index.php" class=<?php changeClassHome(); ?>>Home</a>
                         </li>
                         <li class="wow fadeInDown" data-wow-delay="0.2s">
                             <a class="" href="properties.html">Libros</a>
@@ -56,8 +56,8 @@
                         <li class="wow fadeInDown" data-wow-delay="0.3s">
                             <a class=<?php changeClassAbout(); ?> href="property.html">Zona Personal</a>
                         </li>
-                        <li class="wow fadeInDown" data-wow-delay="0.5s"><a href="/views/contact.view.php" class=<?php changeClassContact(); ?>>Contacto</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.5s"><a href="/views/upload.view.php" class=<?php changeClassUpload(); ?>>Subir Imagenes</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.5s"><a href="./contact.php" class=<?php changeClassContact(); ?>>Contacto</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.5s"><a href="./upload.php" class=<?php changeClassUpload(); ?>>Subir Imagenes</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->

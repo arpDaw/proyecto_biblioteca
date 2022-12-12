@@ -1,13 +1,15 @@
 <?php
 
 class Colaboradores{
-    var $nombre;
-    var $descripcion;
+    public $nombre;
+    public $descripcion;
     const RUTA_IMAGEN = '..\..\assets\img\colaboradores/';
+    public $imagen;
 
-    function __construct($nombre, $descripcion){
+    function __construct($nombre, $descripcion, $imagen){
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
+        $this->imagen = $imagen;
     }
 
     function getNombre(){
@@ -26,6 +28,6 @@ class Colaboradores{
     }
 
     function getUrlImagen(){
-        return self::RUTA_IMAGEN.$this->nombre;
+        return self::RUTA_IMAGEN.$this->imagen;
     }   
 }

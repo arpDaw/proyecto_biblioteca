@@ -38,20 +38,30 @@
 
         <?php
             require_once "partials/inicio.part.php";
-            require "../utils/File.php"
+            require_once "./utils/File.php";
+            require_once "./database/conexion.php";
+            require_once "./utils/consultas.php";
         ?>
-                            <h2>Upload form</h2>
+                            <h2>Añadir Colaborador</h2>
                             <form method="post" enctype="multipart/form-data" >
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
+                                            <label for="firstname">Nombre</label>
+                                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+
+                                            <label for="firstname">Descripción</label>
+                                            <input type="text" class="form-control" id="descripcion" name="descripcion" required>
+
+                                            <br>
+
+                                            <input type="submit" class="btn btn-primary" value="↑ Upload" name="subir" id="subir">
+                                        </div>
+                                    </div>
+                                        <div class="col-sm-6 ">
                                             <label for="firstname">Picture</label>
                                             <input type="file" class="form-control" id="archivo" name="archivo" required>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6 ">
-                                        <input type="submit" class="btn btn-primary" value="↑ Upload" name="submit">
-                                    </div>
                                 </div>
                                 <!-- /.row -->
                             </form>

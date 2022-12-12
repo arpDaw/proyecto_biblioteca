@@ -1,8 +1,8 @@
 <?php
-require_once "../exceptions/FileException.php";
+require_once "./exceptions/FileException.php";
 
 class File {
-    private $type  = array("image/jpg", "image/jpeg", "image/png", "image/gif");
+    private $types  = array("image/jpg", "image/jpeg", "image/png", "image/gif");
     private $file;
 
     function __construct($nombre){
@@ -15,12 +15,12 @@ class File {
     }
 
     function saveUploadFile($ruta){
-        $rutaCompleta = $ruta . $this->file["nombre"];
+        $rutaCompleta = $ruta . $this->file["name"];
 
-        while(is_fila($rutaCompleta)){
-            $nombre = random_int(1, 1000) . $this->file['nombre'];
+        while(is_file($rutaCompleta)){
+            $nombre = random_int(1, 1000) . $this->file['name'];
             $rutaCompleta = $ruta . $nombre;
-            $this->file['nombre'] = $nombre;
+            $this->file['name'] = $nombre;
         }
 
         $temp = $this->file['tmp_name'];
@@ -30,6 +30,11 @@ class File {
     }
 
     public function getName(){
-        return $this->file['nombre'];
+        return $this->file['name'];
     }
 }
+
+//if(isset($_POST['subir'])){
+//    $file = new File("archivo");
+//    $file->saveUploadFile(".\assets\img\colaboradores/");
+//}

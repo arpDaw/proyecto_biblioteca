@@ -1,16 +1,25 @@
 <?php
+require_once "./entity/Colaboradores.php";
+require_once "./database/conexion.php";
+require_once "./database/QueryBuilder.php";
 
 function ejemplo(){
-    $colaborador1 = new Colaboradores("cola1", "logo colaborador 1");
-    $colaborador2 = new Colaboradores("cola2", "logo colaborador 2");
-    $colaborador3 = new Colaboradores("cola3", "logo colaborador 3");
+    $conexion = Conexion::make();
+    $queryBuilder = new QueryBuilder($conexion);
 
-    $colaboradores = [];
-    array_push($colaboradores, $colaborador1, $colaborador2, $colaborador3);
+    $constructor = ['nombre', 'descripcion', 'imagen'];
+    $entidad = "Colaboradores";
+    $tabla = "biblioteca1.colaboradores";
+
+    $colaboradores = $queryBuilder->findAll($tabla, $entidad, $constructor);
+
     shuffle($colaboradores);
-    foreach ($colaboradores as $value) {
+    $tempo = array_chunk($colaboradores, 3);
+
+
+    foreach ($tempo[0] as $value) {
         $ruta = $value->getUrlImagen();
-        echo "<img src='$ruta.png'>";
+        echo "<img src='$ruta'>";
     }
 }
 

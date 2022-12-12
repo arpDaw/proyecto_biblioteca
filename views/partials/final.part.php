@@ -11,9 +11,9 @@
                                 
                                 
                                     <?php
-                                        require_once '..\entity\Colaboradores.php';
+                                        require_once '.\entity\Colaboradores.php';
                                         
-                                        require_once '..\testeos\testeoColaboradores.php';
+                                        require_once '.\testeos\testeoColaboradores.php';
                                     ?>
                                 
                             </div>
