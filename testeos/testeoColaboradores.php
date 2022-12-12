@@ -3,8 +3,10 @@ require_once "./entity/Colaboradores.php";
 require_once "./database/conexion.php";
 require_once "./database/QueryBuilder.php";
 
+
 function ejemplo(){
-    $conexion = Conexion::make();
+    $config = require_once __DIR__ . '/../app/config.php';
+    $conexion = Conexion::make($config);
     $queryBuilder = new QueryBuilder($conexion);
 
     $constructor = ['nombre', 'descripcion', 'imagen'];

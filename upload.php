@@ -7,7 +7,9 @@ require_once "./utils/File.php";
 require_once "./utils/utils.php";
 require_once "./entity/Colaboradores.php";
 
-$conexion = Conexion::make();
+
+$config = require_once __DIR__ . '/app/config.php';
+$conexion = Conexion::make($config);
 
 
 if(isset($_POST['subir'])){
