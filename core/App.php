@@ -14,4 +14,11 @@ class App{
         }
         return static::$contenedor[$clave];
     }
+    public static function getConexion(){
+
+        if (! array_key_exists('conexion', static::$contenedor)){
+            static::$contenedor['conexion'] = Conexion::make();
+        }
+        return static::$contenedor['conexion'];
+    }
 }

@@ -9,25 +9,22 @@ require_once "./entity/Colaboradores.php";
 
 
 $config = require_once __DIR__ . '/app/config.php';
-$conexion = Conexion::make($config);
+App::bind('config', $config);
+
 
 
 if(isset($_POST['subir'])){
     $file = new File("archivo");
     $file->saveUploadFile(".\assets\img\colaboradores/");
 
-    $queryBuilder = new QueryBuilder($conexion);
-
     $tabla = "biblioteca1.colaboradores";
     $columnas = ["nombre", "descripcion", "imagen"];
+    $colaborador = new Colaboradores([$_POST['nombre'], $_POST['descripcion'], $file->getName()]);
 
-    $valores = [$_POST['nombre'], $_POST['descripcion'], $file->getName()];
-
-    print_r(getColumnas($columnas));
-    print_r(getMarcadores($columnas));
+    $queryBuilder = new QueryBuilder($tabla, 'colaborador');
 
 
-    $queryBuilder->addRegister($tabla, $columnas, $valores);
+    $queryBuilder->save($colaborador);
 
 
 

@@ -2,13 +2,10 @@
 
 
 class Conexion{
-    public static function make($config){ //funcion estática!!
+    public static function make(){ //funcion estática!!
         try{
-            $opciones = [
-                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_PERSISTENT =>true
-            ];
+
+                $config = App::get('config')['database'];
                 $conexion = new PDO(
                     $config['connection'] . ';dbname=' . $config['name'],
                     $config['username'],
@@ -19,7 +16,7 @@ class Conexion{
         }
         
         catch (PDOException $PDOExcepetion){ //las excepciones se muestran de manera automática
-            die($PDOExcepetion->getMessage());
+            throw new AppException('La conexión con la base de datos no se ha podido realizar');
         }
 
         return $conexion;

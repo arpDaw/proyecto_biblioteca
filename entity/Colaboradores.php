@@ -1,6 +1,6 @@
 <?php
 
-class Colaboradores{
+class Colaboradores implements IEntity {
     public $nombre;
     public $descripcion;
     const RUTA_IMAGEN = '..\..\assets\img\colaboradores/';
@@ -29,5 +29,14 @@ class Colaboradores{
 
     function getUrlImagen(){
         return self::RUTA_IMAGEN.$this->imagen;
-    }   
+    }
+
+    public function toArray()
+    {
+        return[
+            'nombre'=>$this->getNombre(),
+            'descripcion'=>$this->getDescripcion(),
+            'logo'=>$this->getUrlImagen()
+        ];
+    }
 }
