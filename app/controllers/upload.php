@@ -1,11 +1,11 @@
 <?php
 
-require_once "./database/conexion.php";
-require_once "./database/QueryBuilder.php";
-require_once "./views/upload.view.php";
-require_once "./utils/File.php";
-require_once "./utils/utils.php";
-require_once "./entity/Colaboradores.php";
+require_once "../../database/conexion.php";
+require_once "../../database/QueryBuilder.php";
+require_once "../../views/upload.view.php";
+require_once "../../utils/File.php";
+require_once "../../utils/utils.php";
+require_once "../../entity/Colaboradores.php";
 
 
 $config = require_once __DIR__ . '/app/config.php';
@@ -21,10 +21,8 @@ if(isset($_POST['subir'])){
     $columnas = ["nombre", "descripcion", "imagen"];
     $colaborador = new Colaboradores([$_POST['nombre'], $_POST['descripcion'], $file->getName()]);
 
-    $queryBuilder = new QueryBuilder($tabla, 'colaborador');
-
-
-    $queryBuilder->save($colaborador);
+    $colaboradorRepository = new ColaboradorRepositorio();
+    $colaboradorRepository->save($colaborador);
 
 
 

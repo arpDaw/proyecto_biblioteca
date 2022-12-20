@@ -46,4 +46,49 @@ class QueryBuilder{
         }
 
     }
+    public function getTotalLibros(){
+        try{
+            $sql = sprintf('SELECT COUNT(*) FROM biblioteca1.libros');
+            $statement = $this->conexion->prepare($sql);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_CLASS |
+                PDO::FETCH_PROPS_LATE, $this->entidad, $this->constructor);
+
+        }
+        catch (PODException $ex){
+            throw new Base_Exception('No se ha podido ejecutar la Query solicitada');
+        }
+    }
+    public function getLibrosDisponibles(){
+        try{
+            $sql = sprintf('SELECT * 
+                                   FROM biblioteca1.libros
+                                   WHERE Cod_libro NOT IN(SELECT Cod_libro
+                                                          FROM biblioteca1.prestamos
+                                                          WHERE Devuelto = "false");');
+            $statement = $this->conexion->prepare($sql);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_CLASS |
+                PDO::FETCH_PROPS_LATE, $this->entidad, $this->constructor);
+        }
+        catch (PODException $ex){
+            throw new Base_Exception('No se ha podido ejecutar la Query solicitada');
+        }
+    }
+    public function getLibrosPrestados(){
+        try{
+            $sql = sprintf('SELECT * 
+                                   FROM biblioteca1.libros
+                                   WHERE Cod_libro IN(SELECT Cod_libro
+                                                          FROM biblioteca1.prestamos
+                                                          WHERE Devuelto = "false");');
+            $statement = $this->conexion->prepare($sql);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_CLASS |
+                PDO::FETCH_PROPS_LATE, $this->entidad, $this->constructor);
+        }
+        catch (PODException $ex){
+            throw new Base_Exception('No se ha podido ejecutar la Query solicitada');
+        }
+    }
 }
